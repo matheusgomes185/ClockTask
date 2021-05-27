@@ -1,0 +1,2 @@
+nextClockTask:
+  component: "@sls-next/serverless-component"

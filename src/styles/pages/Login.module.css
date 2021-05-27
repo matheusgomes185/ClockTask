@@ -1,0 +1,104 @@
+.container {
+    height: 100vh;
+    margin: 0 auto;
+    background: url('/bg-login.svg') #5965E0 no-repeat center;
+    background-size: cover;
+    color: #FFFFFF;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.container section {
+    flex: 1;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6.25rem;
+    align-content: center;
+}
+
+.container section:last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container section header {
+    font-family: Inter;
+    font-size: 2rem;
+    font-weight: 500;
+
+    margin-bottom: 2rem;
+}
+
+.container section p {
+    color: #B2B9FF;
+    margin-bottom: 2rem;
+}
+
+.form {
+    max-width: 279px;
+    position: relative;
+}
+
+.form input {
+    font-family: Inter;
+    background: linear-gradient(90deg, #4953B8 0%, rgba(73, 83, 184, 0.2) 100%);
+    border-radius: 5px 0px 0px 0px;
+    height: 3.5rem;
+    padding: 0.5rem 1rem;
+    
+    color: #fff;
+    border: 1.5px solid #4953B8;
+    outline: #414AA3;
+}
+
+.form input:nth-child(2) {
+    border-radius: 0px 0px 0px 5px;
+}
+
+.form input:hover{
+    outline: 1.5px solid #414AA3;
+}
+
+.form input::placeholder {
+    color: #B2B9FF;
+}
+
+.form button {
+    top: 0;
+    right: 0;
+    position: absolute;
+    width: 3rem;
+    height: 7rem;
+    font-size: 0;
+    border: 0;
+
+    background: #4953B8;
+    border-radius: 0px 5px 5px 0px;
+    transition: all 0.3s;
+}
+
+.form button:hover {
+    background: #4CD62B;
+}
+
+.linkButton {
+    border: 0;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    max-width: 279px;
+    width: 100%;
+    text-align: center;
+    background: #4953B8;
+    margin-top: 1rem;
+    color: #FFFFFF;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.linkButton:hover {
+    background: #4CD62B;
+    color: #FFFFFF;
+}

@@ -1,0 +1,100 @@
+.container {
+    height: 100vh;
+    margin: 0 auto;
+    background: url('/bg-login.svg') #5965E0 no-repeat center;
+    background-size: cover;
+    color: #FFFFFF;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.container section {
+    flex: 1;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6.25rem;
+    align-content: center;
+}
+
+.container section:last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container section header {
+    font-family: Inter;
+    font-size: 2rem;
+    font-weight: 500;
+
+    margin-bottom: 2rem;
+}
+
+.container section p {
+    color: #B2B9FF;
+    margin-bottom: 2rem;
+}
+
+.form {
+    max-width: 279px;
+    position: relative;
+}
+
+.form input {
+    width: 100%;
+    font-family: Inter;
+    background: linear-gradient(90deg, #4953B8 0%, rgba(73, 83, 184, 0.2) 100%);
+    border-radius: 5px;
+    height: 3.5rem;
+    padding: 0.5rem 1rem;
+    
+    color: #fff;
+    border: 1.5px solid #4953B8;
+    outline: #414AA3;
+    margin-bottom: 1rem;
+}
+
+.form input:hover{
+    outline: 1.5px solid #414AA3;
+}
+
+.form input::placeholder {
+    color: #B2B9FF;
+}
+
+.form button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 0;
+    padding: 1rem 2rem;
+    color: #FFFFFF;
+
+    background: #4CD62B;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.form button img {
+    width: 1rem;
+    margin-right: 0.5rem;
+}
+
+.form button:hover {
+    background: #4953B8;
+}
+
+.linkButton {
+    border: 0;
+    max-width: 279px;
+    width: 100%;
+    text-align: center;
+    background: transparent;
+    margin-top: 1rem;
+    color: #FFFFFF;
+    font-weight: bold;
+}
