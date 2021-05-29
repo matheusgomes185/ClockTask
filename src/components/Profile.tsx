@@ -17,11 +17,11 @@ export function Profile() {
     
     return(
         <div className={styles.profileContainer}>
-            <img src="/default-user-image.png" alt="{nameUser}" />
+            <img src="http://clocktask.s3-website-us-east-1.amazonaws.com/default-user-image.png" alt="{nameUser}" />
             <div>
-                <strong>{name} <button onClick={logout}><img src="/icons/arrowright.svg" alt="Sair" /> Sair</button></strong>
+                <strong>{name} <button onClick={logout}><img src="http://clocktask.s3-website-us-east-1.amazonaws.com/icons/arrowright.svg" alt="Sair" /> Sair</button></strong>
                 <p>
-                    <img src="icons/level.svg" alt="Level" />
+                    <img src="http://clocktask.s3-website-us-east-1.amazonaws.com/icons/level.svg" alt="Level" />
                     Level {level}
                 </p>
             </div>

@@ -1,7 +1,7 @@
 .container {
     height: 100vh;
     margin: 0 auto;
-    background: url('/bg-login.svg') #5965E0 no-repeat center;
+    background: url('http://clocktask.s3-website-us-east-1.amazonaws.com/bg-login.svg') #5965E0 no-repeat center;
     background-size: cover;
     color: #FFFFFF;
 

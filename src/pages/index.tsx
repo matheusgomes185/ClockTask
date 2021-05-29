@@ -44,7 +44,7 @@ export default function Login() {
             <input id="email" type="email" autoComplete="email" placeholder="Digite seu e-mail" required />
             <input id="password" type="password" autoComplete="password" placeholder="Digite sua senha" required />
             <button type="submit">
-              <img src="/icons/arrowright.svg" alt="Entrar" />
+              <img src="http://clocktask.s3-website-us-east-1.amazonaws.com/icons/arrowright.svg" alt="Entrar" />
             </button>
           </form>
           <button className={styles.linkButton} type="button" onClick={ ()=>{router.push('register')} }>

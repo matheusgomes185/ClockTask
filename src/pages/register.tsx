@@ -44,7 +44,7 @@ export default function Register() {
             <input id="email" type="email" autoComplete="email" placeholder="Digite seu e-mail" required />
             <input id="password" type="password" autoComplete="password" placeholder="Digite sua senha" required />
             <button type="submit">
-              <img src="/icons/arrowright.svg" alt="Cadastrar" />
+              <img src="http://clocktask.s3-website-us-east-1.amazonaws.com/icons/arrowright.svg" alt="Cadastrar" />
               Cadastrar
             </button>
           </form>
