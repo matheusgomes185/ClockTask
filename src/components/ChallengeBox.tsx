@@ -25,7 +25,7 @@ export function ChallengeBox(){
                     <header>Ganhe {activeChallenge.amount} xp</header>
 
                     <main>
-                        <img src={`http://clocktask.s3-website-us-east-1.amazonaws.com/default-user-image.png/icons/${activeChallenge.type}.svg`} />
+                        <img src={`http://clocktask.s3-website-us-east-1.amazonaws.com/icons/${activeChallenge.type}.svg`} />
                         <strong>Novo desafio</strong>
                         <p>{activeChallenge.description}</p>
                     </main>
