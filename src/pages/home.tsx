@@ -1,6 +1,8 @@
+import Cookies from 'js-cookie';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { api } from '../api/api';
 import { ChallengeBox } from "../components/ChallengeBox";
 import { CompleteChallenges } from "../components/CompleteChallenges";
@@ -12,6 +14,7 @@ import { CountdownProvider } from '../contexts/CountdownContext';
 import styles from '../styles/pages/Home.module.css';
 
 interface HomeProps {
+  noToken: boolean;
   name: string;
   level: number;
   currentExperience: number;
@@ -19,11 +22,13 @@ interface HomeProps {
 }
 
 export default function App(props: HomeProps) {
-  const { isFallback } = useRouter();
+  const router = useRouter();
 
-  if(isFallback){
-    return <h1>Carregando...</h1>
-  }
+  useEffect(() => {
+    if(props.noToken){
+      router.push('/');
+    }
+  }, [props.noToken]);
 
   return (
     <ChallengesProvider 
@@ -58,6 +63,16 @@ export default function App(props: HomeProps) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { token } = context.req.cookies;
+
+  if(token === 'undefined') {
+    Cookies.remove('token');
+
+    return {
+      props: {
+        noToken: true
+      }
+    }
+  }
 
   api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
 

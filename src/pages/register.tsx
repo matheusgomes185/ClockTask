@@ -1,14 +1,13 @@
 import { useRouter } from 'next/router';
-import styles from '../styles/pages/Register.module.css';
+import { useState } from 'react';
 import { api } from '../api/api';
+import { delay } from '../lib/delay';
+import styles from '../styles/pages/Register.module.css';
 
 export default function Register() {
-  const router = useRouter();
-  const { isFallback } = useRouter();
-
-  if(isFallback){
-    return <h1>Carregando...</h1>
-  }
+  const router = useRouter();  
+  
+  const [erroMessage, setErroMessage] = useState(null);
 
   const registerUser = async (event) => {
     event.preventDefault();
@@ -18,15 +17,17 @@ export default function Register() {
         password: event.target.password.value,
         name: event.target.name.value,
         username: event.target.name.value.toLowerCase().trim()
-      }).then((response) => {
-        if(response.status === 201) {
-          alert ("Conta criada com sucesso, clique em OK para continuar.");
-          router.push('/');
+      }).then( ({data:{error}}) => {
+        if(!error) {
+          setErroMessage(['success', 'Conta criada com sucesso. Faça o login para continuar ou aguarde 5 segundos.']);
+          delay(5000).then(()=>{
+            router.push('/');
+          });
         } else {
-          alert ("Ocorreu um erro ao tentar criar conta, tente novamente mais tarde.");
+          setErroMessage(['error', 'E-mail já existe!']);
         }
       }).catch(err => {
-        alert("Ocorreu um erro inesperado, por favor conectate um administrador.");
+        setErroMessage(['error', 'Ocorreu um erro inesperado, por favor conectate um administrador.']);
         console.log(err);
       });
   }
@@ -39,6 +40,7 @@ export default function Register() {
           <header>Cadastro</header>
           <p>Faça o cadastro para começar a sua jornada</p>
 
+          {erroMessage && <div id="message" data-message={erroMessage[0]}>{erroMessage[1]}</div>}
           <form className={styles.form} onSubmit={registerUser}>
             <input id="name" type="text" autoComplete="name" placeholder="Digite seu nome" required />
             <input id="email" type="email" autoComplete="email" placeholder="Digite seu e-mail" required />

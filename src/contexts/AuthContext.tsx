@@ -4,6 +4,7 @@ import { api } from '../api/api';
 
 interface AuthContextData {
     isLoggedIn: boolean;
+    erroMessage: string;
     handleLogin(email: string, password: string): void;
     handleLogout(): void;
 }
@@ -17,27 +18,31 @@ export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [erroMessage, setErroMessage] = useState('');
+    
+    const token = Cookies.get('token');
 
     useEffect(() => {
-        const token = Cookies.get('token');
-  
-        if(token) {
-            api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
-            setIsLoggedIn(true);
+        if(token !== 'undefined') {
+            api.defaults.headers.Authorization = `Bearer ${token}`;
         }
-    }, []);
+    }, [token]);
 
     async function handleLogin(email: string, password: string) {
         await api.post('/auth', {
             email,
             password
-        }).then( ({ data:{ token } }) => {            
-            Cookies.set('token', JSON.stringify(token), { expires: 1 });
-            api.defaults.headers.Authorization = `Bearer ${token}`;
-            
-            setIsLoggedIn(true);
+        }).then( ({ data:{user, token, error} }) => { 
+            if(user) {
+                Cookies.set('token', JSON.stringify(token), { expires: 1 });
+                api.defaults.headers.Authorization = `Bearer ${token}`;
+                setIsLoggedIn(true);
+                setErroMessage('');
+            } else {
+                setErroMessage('E-mail ou senha inválido!');
+            }
         }).catch((err) => {
-            alert("E-mail ou senha inválidos!");
+            setErroMessage("Ocorreu o erro inesperado, contacte o administrador!");
             console.log(err);
         });
     }
@@ -52,7 +57,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
         <AuthContext.Provider value={{
             isLoggedIn,
             handleLogin,
-            handleLogout
+            handleLogout,
+            erroMessage
         }}>
             { children }
         </AuthContext.Provider>

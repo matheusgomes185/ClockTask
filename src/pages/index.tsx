@@ -6,13 +6,8 @@ import styles from '../styles/pages/Login.module.css';
 
 
 export default function Login() {
-  const { isLoggedIn, handleLogin } = useContext(AuthContext);
+  const { isLoggedIn, handleLogin, erroMessage } = useContext(AuthContext);
   const router = useRouter();
-  const { isFallback } = useRouter();
-
-  if(isFallback){
-    return <h1>Carregando...</h1>
-  }
 
   useEffect(() => {
     if(isLoggedIn) {
@@ -39,7 +34,8 @@ export default function Login() {
         <div>
           <header>Bem-vindo</header>
           <p>Faça o login para começar</p>
-
+          
+          {erroMessage && <div id="message" data-message="error">{erroMessage}</div>}
           <form className={styles.form} onSubmit={login}>
             <input id="email" type="email" autoComplete="email" placeholder="Digite seu e-mail" required />
             <input id="password" type="password" autoComplete="password" placeholder="Digite sua senha" required />

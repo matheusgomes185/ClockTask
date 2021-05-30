@@ -51,7 +51,8 @@
     
     color: #fff;
     border: 1.5px solid #4953B8;
-    outline: #414AA3;
+    /* outline: none; */
+    outline: #414AA3; 
 }
 
 .form input:nth-child(2) {
@@ -59,7 +60,12 @@
 }
 
 .form input:hover{
-    outline: 1.5px solid #414AA3;
+    outline: 0;
+}
+
+.form input:focus-within {
+    background: var(--background);
+    color: #4953B8;
 }
 
 .form input::placeholder {
